@@ -2,7 +2,8 @@
 How can I create a self-contained Python application installer for Linux?
 
 ## AWS SAM CLI
-Pre-reqs: wget git gcc
+
+**Pre-reqs**: wget git gcc
 
 ```bash
 # Installation
@@ -16,3 +17,6 @@ sam --version
 # Upgrade
 sam upgrade
 ```
+
+### Installing in Docker
+To run inside Linux Docker (say Ubuntu), you need to create a new user that is not "root" because Homebrew will fail if you run as root. Explore the following Dockerfiles to get instructions to add a new non-root user before running the installation instructions: https://github.com/Linuxbrew/docker
