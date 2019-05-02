@@ -11,7 +11,7 @@ chmod a+x ~/sam
 alias sam=~/sam
 
 # Usage
-sam —version
+sam --version
 
 # Upgrade
 sam upgrade
