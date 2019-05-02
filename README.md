@@ -18,5 +18,25 @@ sam --version
 sam upgrade
 ```
 
-### Installing in Docker
-To run inside Linux Docker (say Ubuntu), you need to create a new user that is not "root" because Homebrew will fail if you run as root. Explore the following Dockerfiles to get instructions to add a new non-root user before running the installation instructions: https://github.com/Linuxbrew/docker
+### Docker
+
+#### Ubuntu
+
+```
+docker build -t sam:ubuntu ./docker/ubuntu/Dockerfile
+docker run sam:ubuntu --help
+```
+
+#### AmazonLinux 2
+
+```
+docker build -t sam:al2 ./docker/al2/Dockerfile
+docker run sam:al2 --help
+```
+
+#### Lambci
+
+```
+docker build -t sam:lambci-ruby2.5 ./docker/al2/Dockerfile
+docker run sam:lambci-ruby2.7 --help
+```
