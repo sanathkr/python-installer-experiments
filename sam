@@ -1,0 +1,45 @@
+#!/bin/bash
+
+TMP=/tmp
+TARGET=~/.aws-sam-cli-installation
+BREW=$TARGET/bin/brew
+SAM=$TARGET/bin/sam
+mkdir -p $TARGET
+
+upgrade_sam_cli() {
+	$BREW update
+	$BREW upgrade aws-sam-cli
+}
+
+install_sam_cli_if_necessary() {
+
+	if [ ! -f $SAM ]; then
+		# Fresh install
+		$BREW update
+		$BREW tap aws/tap
+		$BREW install aws-sam-cli
+	fi
+}
+
+install_brew_if_necessary() {
+
+  if [ ! -f $BREW ]; then
+
+	# Download and unpack linuxbrew into the $TARGET folder at top level
+	linuxbrew_tarball=$TMP/linuxbrew.tar.gz
+	wget -O $linuxbrew_tarball https://github.com/Linuxbrew/brew/tarball/master
+	tar -xf $linuxbrew_tarball -C $TARGET --strip-components=1
+  fi
+}
+
+
+install_brew_if_necessary
+install_sam_cli_if_necessary
+
+COMMAND=$1
+if [ "$COMMAND" = "upgrade" ]; then
+	upgrade_sam_cli
+	exit 0
+fi
+
+exec $SAM $@
